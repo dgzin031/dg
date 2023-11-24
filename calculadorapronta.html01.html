@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora</title>
+  <style>
+    body {
+      background-color: beige;
+      font-family: Arial, sans-serif;
+    }
+
+    main {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Calculadora 1.0</h1>
+    <input type="number" id="txtValor1" oninput="calcular()">
+    <select id="operadores" oninput="calcular()">
+      <option value="+">+(somar)</option>
+      <option value="-">-(subtrair)</option>
+      <option value="*">*(multiplicar)</option>
+      <option value="/">/(dividir)</option>
+    </select>
+    <input type="number" id="txtValor2" oninput="calcular()">
+    <button onclick="limpar()">Limpar</button>
+    <p id="saida">Resultado:</p>
+  </main>
+
+  <script>
+    function calcular() {
+      var valor1 = parseFloat(document.getElementById("txtValor1").value) || 0;
+      var valor2 = parseFloat(document.getElementById("txtValor2").value) || 0;
+      var operador = document.getElementById("operadores").value;
+      var resultado;
+
+      switch (operador) {
+        case "+":
+          resultado = valor1 + valor2;
+          break;
+        case "-":
+          resultado = valor1 - valor2;
+          break;
+        case "*":
+          resultado = valor1 * valor2;
+          break;
+        case "/":
+          resultado = valor1 / valor2;
+          break;
+        default:
+          resultado = "Operação não suportada";
+      }
+
+      document.getElementById("saida").innerHTML = "Resultado: " + resultado;
+    }
+
+    function limpar() {
+      document.getElementById("txtValor1").value = "";
+      document.getElementById("txtValor2").value = "";
+      document.getElementById("saida").innerHTML = "Resultado:";
+    }
+  </script>
+</body>
+</html>
